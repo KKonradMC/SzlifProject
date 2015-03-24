@@ -4,5 +4,6 @@
     <string name="app_name">Szlif application</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="reputation">Reputation: %,d</string>
 
 </resources>
