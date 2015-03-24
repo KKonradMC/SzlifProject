@@ -15,7 +15,7 @@ import javax.inject.Named;
 public class UtilsModule {
 
     private static final String WITH_MEMORY = "withMemory";
-    private static final String DEFAULT = "withMemory";
+    private static final String DEFAULT = "default";
     private Context context;
 
     UtilsModule(Context context) {
