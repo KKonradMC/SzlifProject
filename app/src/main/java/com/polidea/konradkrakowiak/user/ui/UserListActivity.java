@@ -14,6 +14,7 @@ import com.polidea.konradkrakowiak.common.ui.RetrofitBaseActivity;
 import com.polidea.konradkrakowiak.common.ui.ToastFactory;
 import com.polidea.konradkrakowiak.user.model.Order;
 import com.polidea.konradkrakowiak.user.model.Sort;
+import com.polidea.konradkrakowiak.user.model.User;
 import com.polidea.konradkrakowiak.user.model.UserList;
 import com.polidea.konradkrakowiak.user.network.UsersRequest;
 import javax.inject.Inject;
@@ -47,6 +48,12 @@ public class UserListActivity extends RetrofitBaseActivity<UserList> implements 
 
     private void prepareUserList(){
         userListAdapter = new UserListAdapter(imageLoader);
+        userListAdapter.setOnUserItemClickListener(new UserListAdapter.OnUserItemClickListener() {
+            @Override
+            public void onUserItemClick(User user) {
+                startActivity(UserDetailsActivity.IntentFactory.forStart(UserListActivity.this, user));
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         userList.setLayoutManager(layoutManager);
         userList.setAdapter(userListAdapter);
