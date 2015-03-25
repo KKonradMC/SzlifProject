@@ -1,4 +1,4 @@
-package com.polidea.konradkrakowiak.szlifapplication;
+package com.polidea.konradkrakowiak;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

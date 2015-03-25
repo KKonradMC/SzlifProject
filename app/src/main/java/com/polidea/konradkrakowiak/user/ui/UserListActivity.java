@@ -1,6 +1,7 @@
 package com.polidea.konradkrakowiak.user.ui;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import butterknife.ButterKnife;
@@ -16,7 +17,7 @@ import com.polidea.konradkrakowiak.user.model.UserList;
 import com.polidea.konradkrakowiak.user.network.UsersRequest;
 import javax.inject.Inject;
 
-public class UserListActivity extends RetrofitBaseActivity<UserList> {
+public class UserListActivity extends RetrofitBaseActivity<UserList> implements SwipeRefreshLayout.OnRefreshListener{
 
     @Inject
     ImageLoader imageLoader;
@@ -26,15 +27,18 @@ public class UserListActivity extends RetrofitBaseActivity<UserList> {
 
     UserListAdapter userListAdapter;
 
+    @InjectView(R.id.swipe_to_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void inOnCreate(Bundle savedInstanceState) {
         SzlifApplication.component(this).inject(this);
         spiceManager.execute(new UsersRequest.Builder(Order.desc, Sort.reputation).build(), this);
 
         setContentView(R.layout.activity_user_list);
         ButterKnife.inject(this);
         prepareUserList();
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     private void prepareUserList(){
@@ -46,11 +50,17 @@ public class UserListActivity extends RetrofitBaseActivity<UserList> {
 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onRequestSuccess(UserList users) {
-        userListAdapter.addUserListAndRefresh(users);
+        userListAdapter.clearAndAddUserListAndRefresh(users);
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        spiceManager.execute(new UsersRequest.Builder(Order.desc, Sort.reputation).build(), this);
     }
 }

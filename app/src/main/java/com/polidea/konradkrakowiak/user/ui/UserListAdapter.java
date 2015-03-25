@@ -31,7 +31,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         this.imageLoader = imageLoader;
     }
 
-    public void addUserListAndRefresh(UserList userList) {
+    public void clearAndAddUserListAndRefresh(UserList userList) {
+        list.clear();
         for (final User user : userList) {
             list.add(user);
         }
@@ -46,7 +47,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 onUserItemClickListener.onUserItemClick(list.get(viewHolder.getPosition()));
-                ;
             }
         });
         return viewHolder;
