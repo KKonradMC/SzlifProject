@@ -21,10 +21,10 @@ public abstract class BaseActivity extends ActionBarActivity {
         inOnCreate(savedInstanceState);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-        }
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 

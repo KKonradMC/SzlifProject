@@ -19,7 +19,7 @@ public class SzlifSpiceManagerService extends RetrofitGsonSpiceService {
 
     @Override
     protected String getServerUrl() {
-        return BuildConfig.API_URL;
+        throw new UnsupportedOperationException();
     }
 
     @Override
