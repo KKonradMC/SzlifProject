@@ -50,6 +50,7 @@ public class UtilsModule {
     DisplayImageOptions provideDisplayImageOptions(){
         return new DisplayImageOptions
                 .Builder()
+                .showImageOnLoading(R.drawable.ic_launcher)
                 .showImageForEmptyUri(R.drawable.ic_launcher)
                 .showImageOnFail(R.drawable.ic_launcher)
                 .cacheInMemory(true)
