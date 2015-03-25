@@ -56,6 +56,9 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.3'
 
     apt 'com.google.dagger:dagger-compiler:2.0-SNAPSHOT'
+    apt "org.parceler:parceler:0.2.15"
+
+    androidTestCompile 'org.parceler:parceler-api:0.2.15'
 
     provided 'org.glassfish:javax.annotation:10.0-b28'
 }
