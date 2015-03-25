@@ -11,6 +11,7 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.polidea.konradkrakowiak.R;
 import com.polidea.konradkrakowiak.SzlifApplication;
 import com.polidea.konradkrakowiak.common.ui.RetrofitBaseActivity;
+import com.polidea.konradkrakowiak.common.ui.ToastFactory;
 import com.polidea.konradkrakowiak.user.model.Order;
 import com.polidea.konradkrakowiak.user.model.Sort;
 import com.polidea.konradkrakowiak.user.model.UserList;
@@ -18,6 +19,9 @@ import com.polidea.konradkrakowiak.user.network.UsersRequest;
 import javax.inject.Inject;
 
 public class UserListActivity extends RetrofitBaseActivity<UserList> implements SwipeRefreshLayout.OnRefreshListener{
+
+    @Inject
+    ToastFactory toastFactory;
 
     @Inject
     ImageLoader imageLoader;
@@ -51,6 +55,7 @@ public class UserListActivity extends RetrofitBaseActivity<UserList> implements 
     @Override
     public void onRequestFailure(SpiceException spiceException) {
         swipeRefreshLayout.setRefreshing(false);
+        toastFactory.showError(this, spiceException.getMessage());
     }
 
     @Override
