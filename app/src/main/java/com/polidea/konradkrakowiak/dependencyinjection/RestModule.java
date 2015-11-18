@@ -2,46 +2,68 @@ package com.polidea.konradkrakowiak.dependencyinjection;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.octo.android.robospice.SpiceManager;
 import com.polidea.konradkrakowiak.BuildConfig;
-import com.polidea.konradkrakowiak.network.SzlifSpiceManagerService;
-import com.polidea.konradkrakowiak.user.model.UserType;
-import com.polidea.konradkrakowiak.user.model.UserTypeDeserializer;
+import com.squareup.okhttp.HttpUrl;
+import com.squareup.okhttp.OkHttpClient;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
-import retrofit.RestAdapter;
-import retrofit.converter.GsonConverter;
+import retrofit.CallAdapter;
+import retrofit.Converter;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
+import retrofit.RxJavaCallAdapterFactory;
 
 @Module
 public class RestModule {
 
-    @Provides
     @Singleton
-    GsonConverter provideGsonConverter(Gson gson) {
-        return new GsonConverter(gson);
+    @Provides
+    Retrofit provideRetrofit(Retrofit.Builder builder) {
+        return builder.build();
     }
 
     @Provides
-    @Singleton
-    Gson provideMainGson() {
-        return new GsonBuilder()
-                .registerTypeAdapter(UserType.class, new UserTypeDeserializer())
-                .create();
+    Retrofit.Builder provideRetrofitBuilder(
+            OkHttpClient okHttpClient,
+            Converter.Factory converterFactory,
+            CallAdapter.Factory callAdapterFactory) {
+        return new Retrofit
+                .Builder()
+                .baseUrl(BuildConfig.API_URL)
+                .client(okHttpClient)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory);
     }
 
     @Provides
-    SpiceManager provideSpiceManager() {
-        return new SpiceManager(SzlifSpiceManagerService.class);
+    HttpUrl.Builder provideHttpUrlBuilder() {
+        return new HttpUrl.Builder();
     }
 
     @Provides
-    @Singleton
-    RestAdapter.Builder provideRestAdapterBuilder(GsonConverter gsonConverter) {
+    OkHttpClient provideOkHttpClient() {
+        final OkHttpClient result = new OkHttpClient();
+        return result;
+    }
 
-        return new RestAdapter.Builder()
-                .setConverter(gsonConverter)
-                .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
-                .setEndpoint(BuildConfig.API_URL);
+    @Provides
+    CallAdapter.Factory provideRxCallAdapterFactory() {
+        return RxJavaCallAdapterFactory.create();
+    }
+
+    @Provides
+    Converter.Factory provideConverterFactory(Gson gson) {
+        return GsonConverterFactory.create(gson);
+    }
+
+    @Provides
+    Gson provideGson(GsonBuilder gsonBuilder) {
+        return gsonBuilder.create();
+    }
+
+    @Provides
+    GsonBuilder provideGsonBuilder() {
+        return new GsonBuilder();
     }
 }

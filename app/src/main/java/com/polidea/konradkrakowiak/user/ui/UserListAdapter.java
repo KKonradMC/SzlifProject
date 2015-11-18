@@ -7,9 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.polidea.konradkrakowiak.R;
 import com.polidea.konradkrakowiak.user.model.User;
@@ -71,16 +70,16 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
         private final Context context;
 
-        @InjectView(R.id.user_item_photo)
+        @Bind(R.id.user_item_photo)
         ImageView photo;
 
-        @InjectView(R.id.user_item_name)
+        @Bind(R.id.user_item_name)
         TextView name;
 
-        @InjectView(R.id.user_item_reputation)
+        @Bind(R.id.user_item_reputation)
         TextView reputation;
 
-        @InjectView(R.id.user_item_badges)
+        @Bind(R.id.user_item_badges)
         BadgeView badgeView;
 
         private final ImageLoader imageLoader;
@@ -88,7 +87,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         ViewHolder(View itemView, ImageLoader imageLoader) {
             super(itemView);
             this.imageLoader = imageLoader;
-            ButterKnife.inject(this, itemView);
+            ButterKnife.bind(this, itemView);
             context = itemView.getContext();
         }
 
@@ -109,6 +108,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             }
         };
 
-        public void onUserItemClick(User user);
+        void onUserItemClick(User user);
     }
 }

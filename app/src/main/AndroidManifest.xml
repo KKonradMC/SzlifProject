@@ -24,9 +24,6 @@
                 android:label="@string/user_details"
                 android:name=".user.ui.UserDetailsActivity"
                 android:screenOrientation="portrait"/>
-        <service
-                android:name=".network.SzlifSpiceManagerService"
-                android:exported="false"/>
     </application>
 
 </manifest>

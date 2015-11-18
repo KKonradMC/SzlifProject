@@ -5,34 +5,34 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import com.polidea.konradkrakowiak.R;
 import com.polidea.konradkrakowiak.user.model.BadgeCounts;
 
 public class BadgeView extends LinearLayout {
 
-    @InjectView(R.id.gold_badge_view)
+    @Bind(R.id.gold_badge_view)
     TextView goldBadge;
 
-    @InjectView(R.id.silver_badge_view)
+    @Bind(R.id.silver_badge_view)
     TextView silverBadge;
 
-    @InjectView(R.id.bronze_badge_view)
+    @Bind(R.id.bronze_badge_view)
     TextView bronzeBadge;
 
     public BadgeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     private void initView(Context context) {
         LayoutInflater.from(context).inflate(R.layout.view_bagdes, this);
     }
 
-    public void setBadges(BadgeCounts badges){
-        if(badges == null){
+    public void setBadges(BadgeCounts badges) {
+        if (badges == null) {
             return;
         }
         goldBadge.setText(String.valueOf(badges.getGold()));

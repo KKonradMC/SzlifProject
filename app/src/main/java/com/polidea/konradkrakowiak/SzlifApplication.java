@@ -6,7 +6,7 @@ import com.polidea.konradkrakowiak.dependencyinjection.SzlifAppComponent;
 
 public class SzlifApplication extends Application{
 
-    SzlifAppComponent component;
+    SzlifAppComponent appComponent;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -14,11 +14,10 @@ public class SzlifApplication extends Application{
     }
 
     public void buildComponentAndInject() {
-        component = SzlifAppComponent.Initializer.init(this);
-        component.inject(this);
+        appComponent = SzlifAppComponent.Initializer.init(this);
     }
 
     public static SzlifAppComponent component(Context context) {
-        return ((SzlifApplication) context.getApplicationContext()).component;
+        return ((SzlifApplication) context.getApplicationContext()).appComponent;
     }
 }

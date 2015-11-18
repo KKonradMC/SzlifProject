@@ -1,106 +1,90 @@
 package com.polidea.konradkrakowiak.user.network;
 
-import com.octo.android.robospice.request.retrofit.RetrofitSpiceRequest;
 import com.polidea.konradkrakowiak.user.model.Order;
 import com.polidea.konradkrakowiak.user.model.Sort;
 import com.polidea.konradkrakowiak.user.model.UserList;
 import java.util.Date;
+import javax.inject.Inject;
+import retrofit.Call;
+import retrofit.Retrofit;
 
-public class UsersRequest extends RetrofitSpiceRequest<UserList, UserApiClient> {
+public class UsersRequest {
 
     private static final String SIDE = "stackoverflow";
-    private final Integer page;
 
-    private final Integer pagesize;
+    private Integer page;
 
-    private final Date fromdate;
+    private Integer pagesize;
 
-    private final Date todate;
+    private Date fromdate;
 
-    private final Order order;
+    private Date todate;
 
-    private final Integer min;
+    private Order order = Order.asc;
 
-    private final Integer max;
+    private Integer min;
 
-    private final Sort sort;
+    private Integer max;
 
-    private final String inname;
+    private Sort sort = Sort.creation;
 
-    private UsersRequest(Builder builder) {
-        super(UserList.class, UserApiClient.class);
-        page = builder.page;
-        pagesize = builder.pagesize;
-        fromdate = builder.fromdate;
-        todate = builder.todate;
-        order  = builder.order;
-        min = builder.min;
-        max = builder.max;
-        sort = builder.sort;
-        inname = builder.inname;
+    private String inname;
+
+    @Inject
+    Retrofit retrofit;
+
+    @Inject
+    UsersRequest() {
     }
 
-    @Override
-    public UserList loadDataFromNetwork() throws Exception {
-        return getService().getUsers(page, pagesize, fromdate, todate, order, min, max, sort, inname, SIDE);
+    public Call<UserList> callUserReqquest() {
+        return retrofit.create(UserApiClient.class).getUsers(page, pagesize, fromdate, todate, order, min, max, sort, inname, SIDE);
     }
 
-    public static class Builder {
 
-        private Integer page;
+    public UsersRequest setSort(Sort sort) {
+        this.sort = sort;
+        return this;
+    }
 
-        private Integer pagesize;
+    public UsersRequest setOrder(Order order) {
+        this.order = order;
+        return this;
+    }
 
-        private Date fromdate;
 
-        private Date todate;
+    public UsersRequest setPage(Integer page) {
+        this.page = page;
+        return this;
+    }
 
-        private final Order order;
+    public UsersRequest setPageSize(Integer pagesize) {
+        this.pagesize = pagesize;
+        return this;
+    }
 
-        private Integer min;
+    public UsersRequest setFromDate(Date fromdate) {
+        this.fromdate = fromdate;
+        return this;
+    }
 
-        private Integer max;
+    public UsersRequest setToDate(Date todate) {
+        this.todate = todate;
+        return this;
+    }
 
-        private final Sort sort;
+    public UsersRequest setMin(Integer min) {
+        this.min = min;
+        return this;
+    }
 
-        private String inname;
+    public UsersRequest setMax(Integer max) {
+        this.max = max;
+        return this;
+    }
 
-        public Builder(Order order, Sort sort){
-            this.order = order;
-            this.sort = sort;
-        }
-
-        public Builder setPage(Integer page){
-            this.page = page;
-            return this;
-        }
-        public Builder setPageSize(Integer pagesize){
-            this.pagesize = pagesize;
-            return this;
-        }
-        public Builder setFromDate(Date fromdate){
-            this.fromdate = fromdate;
-            return this;
-        }
-        public Builder setToDate(Date todate){
-            this.todate = todate;
-            return this;
-        }
-        public Builder setMin(Integer min){
-            this.min = min;
-            return this;
-        }
-        public Builder setMax(Integer max){
-            this.max = max;
-            return this;
-        }
-        public Builder setInName(String inname){
-            this.inname = inname;
-            return this;
-        }
-
-        public UsersRequest build(){
-            return new UsersRequest(this);
-        }
+    public UsersRequest setInName(String inname) {
+        this.inname = inname;
+        return this;
     }
 }

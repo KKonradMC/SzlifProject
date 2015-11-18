@@ -2,6 +2,7 @@ package com.polidea.konradkrakowiak.user.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Date;
+import org.parceler.Parcel;
 
 /**POJO for json like:
  *                                                                                                                   <br />
@@ -32,6 +33,7 @@ import java.util.Date;
  *   }
  */
 
+@Parcel
 public class User {
 
     interface Metadata {

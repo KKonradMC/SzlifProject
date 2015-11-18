@@ -1,5 +1,7 @@
 package com.polidea.konradkrakowiak.user.model;
 
+import org.parceler.Parcel;
+
 /**
  * POJO for json                  <br />
  *                                <br />
@@ -10,6 +12,7 @@ package com.polidea.konradkrakowiak.user.model;
  *  }                             <br />
  *
  */
+@Parcel
 public class BadgeCounts {
 
     int bronze;
