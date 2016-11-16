@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.polidea.konradkrakowiak.R;
@@ -18,9 +18,9 @@ import com.polidea.konradkrakowiak.user.model.UserList;
 import com.polidea.konradkrakowiak.user.network.UsersRequest;
 import javax.inject.Inject;
 import javax.inject.Provider;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserListActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, Callback<UserList> {
 
@@ -30,12 +30,12 @@ public class UserListActivity extends BaseActivity implements SwipeRefreshLayout
     @Inject
     ImageLoader imageLoader;
 
-    @Bind(R.id.user_list)
+    @BindView(R.id.user_list)
     RecyclerView userList;
 
     UserListAdapter userListAdapter;
 
-    @Bind(R.id.swipe_to_refresh)
+    @BindView(R.id.swipe_to_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Inject
@@ -65,21 +65,21 @@ public class UserListActivity extends BaseActivity implements SwipeRefreshLayout
         userList.setAdapter(userListAdapter);
     }
 
+    @Override
+    public void onRefresh() {
+        usersRequestProvider.get().setOrder(Order.desc).setSort(Sort.reputation).setInName("Konrad").callUserReqquest().enqueue(this);
+    }
 
     @Override
-    public void onResponse(Response<UserList> response, Retrofit retrofit) {
+    public void onResponse(Call<UserList> call, Response<UserList> response) {
         userListAdapter.clearAndAddUserListAndRefresh(response.body());
         swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailure(Call<UserList> call, Throwable t) {
         swipeRefreshLayout.setRefreshing(false);
         toastFactory.showError(this, t.getMessage());
-    }
 
-    @Override
-    public void onRefresh() {
-        usersRequestProvider.get().setOrder(Order.desc).setSort(Sort.reputation).setInName("Konrad").callUserReqquest().enqueue(this);
     }
 }

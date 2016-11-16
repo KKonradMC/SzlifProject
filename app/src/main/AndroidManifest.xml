@@ -5,15 +5,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-            android:allowBackup="true"
-            android:name=".SzlifApplication"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+        android:allowBackup="true"
+        android:name=".SzlifApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
         <activity
-                android:screenOrientation="portrait"
-                android:name=".user.ui.UserListActivity"
-                android:label="@string/app_name">
+            android:screenOrientation="portrait"
+            android:name=".user.ui.UserListActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -21,9 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-                android:label="@string/user_details"
-                android:name=".user.ui.UserDetailsActivity"
-                android:screenOrientation="portrait"/>
+            android:label="@string/user_details"
+            android:name=".user.ui.UserDetailsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

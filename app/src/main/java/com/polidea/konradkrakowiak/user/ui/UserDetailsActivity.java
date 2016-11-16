@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.polidea.konradkrakowiak.R;
@@ -27,43 +27,43 @@ public class UserDetailsActivity extends BaseActivity {
     @Inject
     ImageLoader imageLoader;
 
-    @Bind(R.id.user_details_img)
+    @BindView(R.id.user_details_img)
     ImageView mUserDetailsImg;
 
-    @Bind(R.id.user_details_name)
+    @BindView(R.id.user_details_name)
     TextView mUserDetailsName;
 
-    @Bind(R.id.user_details_reputation)
+    @BindView(R.id.user_details_reputation)
     TextView mUserDetailsReputation;
 
-    @Bind(R.id.user_details_badges)
+    @BindView(R.id.user_details_badges)
     BadgeView mUserDetailsBadges;
 
-    @Bind(R.id.photo_container)
+    @BindView(R.id.photo_container)
     LinearLayout mPhotoContainer;
 
-    @Bind(R.id.user_details_website)
+    @BindView(R.id.user_details_website)
     TextView mUserDetailsWebsite;
 
-    @Bind(R.id.user_details_age)
+    @BindView(R.id.user_details_age)
     TextView mUserDetailsAge;
 
-    @Bind(R.id.user_details_location)
+    @BindView(R.id.user_details_location)
     TextView mUserDetailsLocation;
 
-    @Bind(R.id.user_details_reputation_change_year)
+    @BindView(R.id.user_details_reputation_change_year)
     TextView mUserDetailsReputationChangeYear;
 
-    @Bind(R.id.user_details_reputation_change_quarter)
+    @BindView(R.id.user_details_reputation_change_quarter)
     TextView mUserDetailsReputationChangeQuarter;
 
-    @Bind(R.id.user_details_reputation_change_month)
+    @BindView(R.id.user_details_reputation_change_month)
     TextView mUserDetailsReputationChangeMonth;
 
-    @Bind(R.id.user_details_reputation_change_week)
+    @BindView(R.id.user_details_reputation_change_week)
     TextView mUserDetailsReputationChangeWeek;
 
-    @Bind(R.id.user_details_reputation_change_day)
+    @BindView(R.id.user_details_reputation_change_day)
     TextView mUserDetailsReputationChangeDay;
 
     @Override

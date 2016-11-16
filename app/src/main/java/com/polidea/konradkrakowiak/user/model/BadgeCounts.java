@@ -4,19 +4,20 @@ import org.parceler.Parcel;
 
 /**
  * POJO for json                  <br />
- *                                <br />
- *  {                             <br />
- *     "bronze": 6402,            <br />
- *     "silver": 5121,            <br />
- *     "gold": 336                <br />
- *  }                             <br />
- *
+ * <br />
+ * {                             <br />
+ * "bronze": 6402,            <br />
+ * "silver": 5121,            <br />
+ * "gold": 336                <br />
+ * }                             <br />
  */
 @Parcel
 public class BadgeCounts {
 
     int bronze;
+
     int silver;
+
     int gold;
 
     public int getBronze() {

@@ -1,8 +1,6 @@
 package com.polidea.konradkrakowiak.common.ui;
 
 import android.app.Activity;
-import android.widget.Toast;
-import com.polidea.konradkrakowiak.R;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import javax.inject.Inject;
@@ -10,9 +8,10 @@ import javax.inject.Inject;
 public class ToastFactory {
 
     @Inject
-    ToastFactory(){
+    ToastFactory() {
 
     }
+
     public void cancelAllNotifications() {
         Crouton.cancelAllCroutons();
     }

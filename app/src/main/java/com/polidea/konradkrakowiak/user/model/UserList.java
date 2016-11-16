@@ -8,6 +8,7 @@ public class UserList implements Iterable<User> {
 
 
     interface Metadata {
+
         String ITEMS = "items";
     }
 

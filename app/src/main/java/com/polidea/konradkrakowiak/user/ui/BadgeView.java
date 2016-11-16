@@ -5,20 +5,20 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.polidea.konradkrakowiak.R;
 import com.polidea.konradkrakowiak.user.model.BadgeCounts;
 
 public class BadgeView extends LinearLayout {
 
-    @Bind(R.id.gold_badge_view)
+    @BindView(R.id.gold_badge_view)
     TextView goldBadge;
 
-    @Bind(R.id.silver_badge_view)
+    @BindView(R.id.silver_badge_view)
     TextView silverBadge;
 
-    @Bind(R.id.bronze_badge_view)
+    @BindView(R.id.bronze_badge_view)
     TextView bronzeBadge;
 
     public BadgeView(Context context, AttributeSet attrs) {

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.polidea.konradkrakowiak.R;
@@ -70,16 +70,16 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
         private final Context context;
 
-        @Bind(R.id.user_item_photo)
+        @BindView(R.id.user_item_photo)
         ImageView photo;
 
-        @Bind(R.id.user_item_name)
+        @BindView(R.id.user_item_name)
         TextView name;
 
-        @Bind(R.id.user_item_reputation)
+        @BindView(R.id.user_item_reputation)
         TextView reputation;
 
-        @Bind(R.id.user_item_badges)
+        @BindView(R.id.user_item_badges)
         BadgeView badgeView;
 
         private final ImageLoader imageLoader;

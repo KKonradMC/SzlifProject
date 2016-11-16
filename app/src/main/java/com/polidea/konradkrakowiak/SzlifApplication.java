@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import com.polidea.konradkrakowiak.dependencyinjection.SzlifAppComponent;
 
-public class SzlifApplication extends Application{
+public class SzlifApplication extends Application {
 
     SzlifAppComponent appComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();

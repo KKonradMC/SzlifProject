@@ -2,7 +2,6 @@ package com.polidea.konradkrakowiak.secondapp.model;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 /**
@@ -11,6 +10,7 @@ import org.mockito.Mockito;
 public class ATest extends TestCase {
 
     A a;
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -18,21 +18,21 @@ public class ATest extends TestCase {
         a.b = Mockito.mock(B.class);
     }
 
-    public void testTest(){
+    public void testTest() {
         //when
         Mockito.when(a.b.getTest()).thenReturn("xxx");
         //then
         assert a.test() == "xxxtest";
     }
 
-    public void testTest2(){
+    public void testTest2() {
         //when
         Mockito.when(a.b.getTest()).thenReturn("xx2x");
         //then
-        Assert.assertTrue( a.test() == "xx2xtest");
+        Assert.assertTrue(a.test() == "xx2xtest");
     }
 
-    public void testTest3(){
+    public void testTest3() {
         //when
         a.test();
         //then

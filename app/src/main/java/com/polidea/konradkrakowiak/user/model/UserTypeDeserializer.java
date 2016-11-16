@@ -10,7 +10,7 @@ public class UserTypeDeserializer implements JsonDeserializer<UserType> {
 
     @Override
     public UserType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        switch(json.getAsString()){
+        switch (json.getAsString()) {
             case UserType.Metadata.REGISTERED:
                 return UserType.REGISTERED;
             default:

@@ -5,8 +5,8 @@ import com.polidea.konradkrakowiak.user.model.Sort;
 import com.polidea.konradkrakowiak.user.model.UserList;
 import java.util.Date;
 import javax.inject.Inject;
-import retrofit.Call;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 public class UsersRequest {
 

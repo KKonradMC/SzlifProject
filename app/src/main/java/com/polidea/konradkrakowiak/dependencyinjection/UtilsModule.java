@@ -15,7 +15,9 @@ import javax.inject.Named;
 public class UtilsModule {
 
     private static final String WITH_MEMORY = "withMemory";
+
     private static final String DEFAULT = "default";
+
     private Context context;
 
     UtilsModule(Context context) {
@@ -37,7 +39,7 @@ public class UtilsModule {
 
     @Provides
     @Named(WITH_MEMORY)
-    ImageLoaderConfiguration provideImageLoaderConfigurationWithMemory( @Named(WITH_MEMORY)DisplayImageOptions displayImageOptions) {
+    ImageLoaderConfiguration provideImageLoaderConfigurationWithMemory(@Named(WITH_MEMORY) DisplayImageOptions displayImageOptions) {
         return new ImageLoaderConfiguration.Builder(context)
                 .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
                 .memoryCacheSize(2 * 1024 * 1024)
@@ -47,7 +49,7 @@ public class UtilsModule {
 
     @Provides
     @Named(WITH_MEMORY)
-    DisplayImageOptions provideDisplayImageOptions(){
+    DisplayImageOptions provideDisplayImageOptions() {
         return new DisplayImageOptions
                 .Builder()
                 .showImageOnLoading(R.drawable.ic_launcher)
