@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.2'
 
     signingConfigs {
         szlifConfig {
@@ -69,7 +68,7 @@ dependencies {
 
     testCompile('org.mockito:mockito-core:2.0.31-beta')
 
-    apt(
+    annotationProcessor(
             'com.google.dagger:dagger-compiler:2.10',
             'org.parceler:parceler:1.1.6',
             'com.jakewharton:butterknife-compiler:8.5.1',
